@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>607</width>
+    <height>395</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QGridLayout" name="gridLayout">
+    <item row="0" column="0">
+     <widget class="QFrame" name="loginFrame">
+      <property name="styleSheet">
+       <string notr="true">#loginFrame{
+background-color: #173F5F;
+}
+
+QLabel{
+color: white;
+font-size: 18px;
+magrin-top: 10px;
+}
+
+#title{
+font-size:50px;
+font-weight:bold;
+margin-top:10px;
+}
+QLineEdit{
+height:35px;
+margin-top:10px;
+font-size:15px;
+border: 2px solid gray;
+padding: 5px 15px;
+}
+
+QLineEdit:hover{
+boder: 2px solid red;
+}
+
+QLineEdit:focus{
+boder: 2px solid green;
+}</string>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::StyledPanel</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Raised</enum>
+      </property>
+      <layout class="QFormLayout" name="formLayout">
+       <item row="1" column="0" colspan="2">
+        <widget class="QLabel" name="label_2">
+         <property name="text">
+          <string>Tên đăng nhập</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="0" colspan="2">
+        <widget class="QLineEdit" name="edtTenDangNhap"/>
+       </item>
+       <item row="3" column="0" colspan="2">
+        <widget class="QLabel" name="label_3">
+         <property name="text">
+          <string>Mật khẩu</string>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="0" colspan="2">
+        <widget class="QLineEdit" name="edtMatKhau"/>
+       </item>
+       <item row="5" column="0" colspan="2">
+        <widget class="QPushButton" name="btnDangNhap">
+         <property name="text">
+          <string>Đăng nhập</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="0" colspan="2">
+        <widget class="QLabel" name="title">
+         <property name="text">
+          <string>Đăng nhập</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
