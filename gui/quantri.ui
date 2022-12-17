@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>MainWindow</class>
- <widget class="QMainWindow" name="MainWindow">
+ <class>QuanTriScreen</class>
+ <widget class="QMainWindow" name="QuanTriScreen">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>720</width>
-    <height>541</height>
+    <width>668</width>
+    <height>521</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Quản trị</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout">
@@ -27,15 +27,17 @@
         </property>
         <property name="maximumSize">
          <size>
-          <width>220</width>
+          <width>300</width>
           <height>16777215</height>
          </size>
         </property>
         <property name="styleSheet">
-         <string notr="true">background-color:rgb(13, 28, 79);
+         <string notr="true">QFrame{
+background-color:rgb(13, 28, 79);
+};
 QPushButton{
-
-background-color: white;
+color:red;
+background-color: red;
 }</string>
         </property>
         <property name="frameShape">
@@ -44,9 +46,9 @@ background-color: white;
         <property name="frameShadow">
          <enum>QFrame::Raised</enum>
         </property>
-        <layout class="QFormLayout" name="formLayout">
-         <item row="0" column="0" colspan="2">
-          <widget class="QWidget" name="" native="true">
+        <layout class="QGridLayout" name="gridLayout_4">
+         <item row="0" column="0">
+          <widget class="QWidget" name="widget" native="true">
            <property name="maximumSize">
             <size>
              <width>16777215</width>
@@ -61,6 +63,14 @@ background-color: white;
            <property name="styleSheet">
             <string notr="true">QPushButton{
 	background-color:white;
+	border-radius: 3px;
+	height:30px;
+}
+
+QPushButton:hover{
+	background-color:rgb(222, 210, 235);
+border: 1px solid red;
+font-weight:bold;
 }</string>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -105,7 +115,11 @@ background-color: white;
 align:left;</string>
               </property>
               <property name="text">
-               <string>TRANG CHỦ</string>
+               <string>Trang chủ</string>
+              </property>
+              <property name="icon">
+               <iconset>
+                <normaloff>../icons/house-solid.svg</normaloff>../icons/house-solid.svg</iconset>
               </property>
              </widget>
             </item>
@@ -117,7 +131,11 @@ align:left;</string>
                </font>
               </property>
               <property name="text">
-               <string>SINIH VIÊN</string>
+               <string>Sinh viên</string>
+              </property>
+              <property name="icon">
+               <iconset>
+                <normaloff>../icons/graduated.png</normaloff>../icons/graduated.png</iconset>
               </property>
              </widget>
             </item>
@@ -129,7 +147,11 @@ align:left;</string>
                </font>
               </property>
               <property name="text">
-               <string>LỚP</string>
+               <string>Lớp</string>
+              </property>
+              <property name="icon">
+               <iconset>
+                <normaloff>../icons/majority.png</normaloff>../icons/majority.png</iconset>
               </property>
              </widget>
             </item>
@@ -141,7 +163,11 @@ align:left;</string>
                </font>
               </property>
               <property name="text">
-               <string>NGÀNH</string>
+               <string>Ngành</string>
+              </property>
+              <property name="icon">
+               <iconset>
+                <normaloff>../icons/constellation.png</normaloff>../icons/constellation.png</iconset>
               </property>
              </widget>
             </item>
@@ -153,7 +179,11 @@ align:left;</string>
                </font>
               </property>
               <property name="text">
-               <string>HỌC PHẦN</string>
+               <string>Học Phần </string>
+              </property>
+              <property name="icon">
+               <iconset>
+                <normaloff>../icons/book.png</normaloff>../icons/book.png</iconset>
               </property>
              </widget>
             </item>
@@ -167,12 +197,29 @@ align:left;</string>
               <property name="text">
                <string>Giảng viên</string>
               </property>
+              <property name="icon">
+               <iconset>
+                <normaloff>../icons/user-tie-solid.svg</normaloff>../icons/user-tie-solid.svg</iconset>
+              </property>
              </widget>
             </item>
            </layout>
           </widget>
          </item>
-         <item row="1" column="1">
+         <item row="1" column="0">
+          <spacer name="verticalSpacer_2">
+           <property name="orientation">
+            <enum>Qt::Vertical</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>20</width>
+             <height>40</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item row="2" column="0">
           <spacer name="verticalSpacer">
            <property name="orientation">
             <enum>Qt::Vertical</enum>
@@ -188,6 +235,20 @@ align:left;</string>
            </property>
           </spacer>
          </item>
+         <item row="3" column="0">
+          <widget class="QPushButton" name="btnLogout">
+           <property name="styleSheet">
+            <string notr="true">background-color: rgb(255, 197, 242)</string>
+           </property>
+           <property name="text">
+            <string>LOG OUT</string>
+           </property>
+           <property name="icon">
+            <iconset>
+             <normaloff>../icons/logout.png</normaloff>../icons/logout.png</iconset>
+           </property>
+          </widget>
+         </item>
         </layout>
        </widget>
       </item>
@@ -200,6 +261,12 @@ align:left;</string>
          <layout class="QGridLayout" name="gridLayout_2">
           <item row="0" column="0">
            <widget class="QLabel" name="label_2">
+            <property name="minimumSize">
+             <size>
+              <width>300</width>
+              <height>0</height>
+             </size>
+            </property>
             <property name="font">
              <font>
               <pointsize>40</pointsize>

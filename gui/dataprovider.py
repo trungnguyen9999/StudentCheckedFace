@@ -4,7 +4,7 @@ import hashlib
 pw_default = hashlib.md5("123".encode())
 
 def insertOrUpdateSinhVien(sv_mssv, sv_ten, lop_id, sv_dienthoai, sv_diachi, sv_email, sv_ngaysinh):
-    conn = sql.connect("database/diemdanhsinhvien.db")
+    conn = sql.connect("database/DatabaseStudentCheckedFace.db")
     query = "SELECT * FROM sinhvien where sv_mssv = ?"
     cursor = conn.execute(query, sv_mssv)
     isRecordExist = 0
@@ -21,7 +21,7 @@ def insertOrUpdateSinhVien(sv_mssv, sv_ten, lop_id, sv_dienthoai, sv_diachi, sv_
     conn.close()
 
 def insertOrUpdateCanBo(cb_maso, cb_ten, cb_dienthoai, cb_email):
-    conn = sql.connect(database="database/diemdanhsinhvien.db")  
+    conn = sql.connect(database="database/DatabaseStudentCheckedFace.db")  
     query = "SELECT * FROM canbo where cb_maso = ?"
     cursor = conn.execute(query, cb_maso)
     isRecordExist = 0
@@ -39,7 +39,7 @@ def insertOrUpdateCanBo(cb_maso, cb_ten, cb_dienthoai, cb_email):
 
 def updatePassword(cb_maso, cb_password, cb_newpassword):
     print("Update password")
-    conn = sql.connect(database="database/diemdanhsinhvien.db")  
+    conn = sql.connect(database="database/DatabaseStudentCheckedFace.db")  
     query = "SELECT * FROM canbo where cb_maso = ? and cb_password = ?"
     cursor = conn.execute(query, (cb_maso, hashlib.md5(cb_password).hexdigest))
     isRecordExist = 0
@@ -52,19 +52,19 @@ def updatePassword(cb_maso, cb_password, cb_newpassword):
     conn.close()
 
 def login(cb_maso, password):
-    conn = sql.connect(database="database/diemdanhsinhvien.db")
-    statement = "SELECT cb_maso from canbo WHERE cb_maso=? AND cb_password =?;"
-    print(statement)
-    cur = conn.execute(statement, (cb_maso, password))
+    loaitaikhoan = -1
+    conn = sql.connect(database="database/DatabaseStudentCheckedFace.db")
+    statement = "SELECT loaitaikhoan from tb_canbo WHERE cb_ma=? AND cb_password =?;"
+    cur = conn.execute(statement, (str(cb_maso), str(password)))
     isRecordExist = 0
-    for row in cur:
+    result_set = cur.fetchall()
+    for row in result_set:
+        loaitaikhoan = row[0]
         isRecordExist = 1
-    if (isRecordExist == 0):  # An empty result evaluates to False.
-        print("Login failed")
-        return False
+    if (isRecordExist == 0):
+        return -1
     else:
-        print("Welcome")
-        return True
+        return loaitaikhoan
         
         
 # insertSinhVien("2", "2", 3, "4", "5", "6", "7")
