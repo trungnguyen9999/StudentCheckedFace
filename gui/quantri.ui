@@ -337,6 +337,7 @@ align:left;</string>
           </item>
          </layout>
         </widget>
+
         <widget class="QWidget" name="lop">
          <widget class="QLabel" name="label_4">
           <property name="geometry">
@@ -352,36 +353,121 @@ align:left;</string>
           </property>
          </widget>
         </widget>
+
         <widget class="QWidget" name="nganh">
-         <widget class="QLabel" name="label_5">
-          <property name="geometry">
-           <rect>
-            <x>170</x>
-            <y>170</y>
-            <width>47</width>
-            <height>13</height>
-           </rect>
-          </property>
-          <property name="text">
-           <string>nganh</string>
-          </property>
-         </widget>
+         <layout class="QGridLayout" name="gridLayout_6">
+          <item row="0" column="0">
+           <layout class="QVBoxLayout" name="verticalLayout_3">
+            <item>
+             <widget class="QPushButton" name="pushButton">
+              <property name="maximumSize">
+               <size>
+                <width>200</width>
+                <height>16777215</height>
+               </size>
+              </property>
+              <property name="text">
+               <string>Thêm</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QTableWidget" name="tbNganh">
+              <property name="horizontalScrollBarPolicy">
+               <enum>Qt::ScrollBarAsNeeded</enum>
+              </property>
+              <property name="sizeAdjustPolicy">
+               <enum>QAbstractScrollArea::AdjustToContents</enum>
+              </property>
+              <property name="showGrid">
+               <bool>true</bool>
+              </property>
+              <attribute name="horizontalHeaderCascadingSectionResizes">
+               <bool>true</bool>
+              </attribute>
+              <attribute name="horizontalHeaderDefaultSectionSize">
+               <number>150</number>
+             </attribute>
+              <column>
+               <property name="text">
+                <string>STT</string>
+               </property>
+              </column>
+              <column>
+               <property name="text">
+                <string>Mã Ngành</string>
+               </property>
+              </column>
+              <column>
+               <property name="text">
+                <string>Tên Ngành</string>
+               </property>
+              </column>
+             </widget>
+            </item>
+           </layout>
+          </item>
+         </layout>
         </widget>
+
+
         <widget class="QWidget" name="hocphan">
-         <widget class="QLabel" name="label_6">
-          <property name="geometry">
-           <rect>
-            <x>160</x>
-            <y>170</y>
-            <width>47</width>
-            <height>13</height>
-           </rect>
-          </property>
-          <property name="text">
-           <string>hoc phan</string>
-          </property>
-         </widget>
+         <layout class="QGridLayout" name="gridLayout_6">
+          <item row="0" column="0">
+           <layout class="QVBoxLayout" name="verticalLayout_3">
+            <item>
+             <widget class="QPushButton" name="pushButton">
+              <property name="maximumSize">
+               <size>
+                <width>200</width>
+                <height>16777215</height>
+               </size>
+              </property>
+              <property name="text">
+               <string>Thêm</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QTableWidget" name="tbHocPhan">
+              <property name="horizontalScrollBarPolicy">
+               <enum>Qt::ScrollBarAsNeeded</enum>
+              </property>
+              <property name="sizeAdjustPolicy">
+               <enum>QAbstractScrollArea::AdjustToContents</enum>
+              </property>
+              <property name="showGrid">
+               <bool>true</bool>
+              </property>
+              <attribute name="horizontalHeaderCascadingSectionResizes">
+               <bool>true</bool>
+              </attribute>
+              <attribute name="horizontalHeaderDefaultSectionSize">
+               <number>150</number>
+             </attribute>
+              <column>
+               <property name="text">
+                <string>STT</string>
+               </property>
+              </column>
+              <column>
+               <property name="text">
+                <string>Mã Học Phần</string>
+               </property>
+              </column>
+              <column>
+               <property name="text">
+                <string>Tên Học Phần</string>
+               </property>
+              </column>
+             </widget>
+            </item>
+           </layout>
+          </item>
+         </layout>
         </widget>
+
+
         <widget class="QWidget" name="giangvien">
          <layout class="QGridLayout" name="gridLayout_6">
           <item row="0" column="0">
