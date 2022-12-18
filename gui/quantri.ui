@@ -6,28 +6,109 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>668</width>
-    <height>521</height>
+    <width>702</width>
+    <height>546</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Quản trị</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <layout class="QGridLayout" name="gridLayout">
+   <layout class="QGridLayout" name="gridLayout_3">
     <item row="0" column="0">
-     <layout class="QHBoxLayout" name="horizontalLayout_2">
+     <layout class="QVBoxLayout" name="verticalLayout_2"/>
+    </item>
+    <item row="1" column="0">
+     <layout class="QHBoxLayout" name="horizontalLayout">
+      <item>
+       <widget class="QLabel" name="label">
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>50</height>
+         </size>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>17</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true"/>
+        </property>
+        <property name="text">
+         <string>Bảng điều khiển</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+        <property name="margin">
+         <number>10</number>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <spacer name="horizontalSpacer">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item>
+       <widget class="QLabel" name="lblTenQuanTri">
+        <property name="text">
+         <string>Admin</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="imgQuanTri">
+        <property name="maximumSize">
+         <size>
+          <width>40</width>
+          <height>40</height>
+         </size>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="pixmap">
+         <pixmap>../images/user.png</pixmap>
+        </property>
+        <property name="scaledContents">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item row="2" column="0">
+     <layout class="QHBoxLayout" name="horizontalLayout_3">
+      <property name="spacing">
+       <number>0</number>
+      </property>
       <item>
        <widget class="QFrame" name="frame">
         <property name="minimumSize">
          <size>
-          <width>0</width>
+          <width>220</width>
           <height>0</height>
          </size>
         </property>
         <property name="maximumSize">
          <size>
-          <width>300</width>
+          <width>400</width>
           <height>16777215</height>
          </size>
         </property>
@@ -38,6 +119,7 @@ background-color:rgb(13, 28, 79);
 QPushButton{
 color:red;
 background-color: red;
+width:100%;
 }</string>
         </property>
         <property name="frameShape">
@@ -48,23 +130,26 @@ background-color: red;
         </property>
         <layout class="QGridLayout" name="gridLayout_4">
          <item row="0" column="0">
-          <widget class="QWidget" name="widget" native="true">
-           <property name="maximumSize">
-            <size>
-             <width>16777215</width>
-             <height>16777209</height>
-            </size>
-           </property>
-           <property name="font">
-            <font>
-             <pointsize>17</pointsize>
-            </font>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">QPushButton{
+          <layout class="QVBoxLayout" name="verticalLayout">
+           <item>
+            <widget class="QWidget" name="widget" native="true">
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>16777209</height>
+              </size>
+             </property>
+             <property name="font">
+              <font>
+               <pointsize>17</pointsize>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QPushButton{
 	background-color:white;
 	border-radius: 3px;
 	height:30px;
+width:100%;
 }
 
 QPushButton:hover{
@@ -72,182 +157,139 @@ QPushButton:hover{
 border: 1px solid red;
 font-weight:bold;
 }</string>
-           </property>
-           <layout class="QVBoxLayout" name="verticalLayout_2">
-            <item>
-             <widget class="QLabel" name="label">
-              <property name="maximumSize">
-               <size>
-                <width>16777215</width>
-                <height>50</height>
-               </size>
-              </property>
-              <property name="font">
-               <font>
-                <pointsize>18</pointsize>
-                <weight>75</weight>
-                <bold>true</bold>
-               </font>
-              </property>
-              <property name="styleSheet">
-               <string notr="true">color: white;</string>
-              </property>
-              <property name="text">
-               <string>QUẢN TRỊ</string>
-              </property>
-              <property name="alignment">
-               <set>Qt::AlignCenter</set>
-              </property>
-              <property name="margin">
-               <number>10</number>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QPushButton" name="btnTrangChu">
-              <property name="font">
-               <font>
-                <pointsize>13</pointsize>
-               </font>
-              </property>
-              <property name="styleSheet">
-               <string notr="true">background-color: white;
+             </property>
+             <layout class="QGridLayout" name="gridLayout">
+              <item row="0" column="0">
+               <widget class="QPushButton" name="btnTrangChu">
+                <property name="font">
+                 <font>
+                  <pointsize>13</pointsize>
+                 </font>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">background-color: white;
 align:left;</string>
-              </property>
-              <property name="text">
-               <string>Trang chủ</string>
-              </property>
-              <property name="icon">
-               <iconset>
-                <normaloff>../icons/house-solid.svg</normaloff>../icons/house-solid.svg</iconset>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QPushButton" name="btnSinhVien">
-              <property name="font">
-               <font>
-                <pointsize>13</pointsize>
-               </font>
-              </property>
-              <property name="text">
-               <string>Sinh viên</string>
-              </property>
-              <property name="icon">
-               <iconset>
-                <normaloff>../icons/graduated.png</normaloff>../icons/graduated.png</iconset>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QPushButton" name="pushButton_4">
-              <property name="font">
-               <font>
-                <pointsize>13</pointsize>
-               </font>
-              </property>
-              <property name="text">
-               <string>Lớp</string>
-              </property>
-              <property name="icon">
-               <iconset>
-                <normaloff>../icons/majority.png</normaloff>../icons/majority.png</iconset>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QPushButton" name="pushButton_3">
-              <property name="font">
-               <font>
-                <pointsize>13</pointsize>
-               </font>
-              </property>
-              <property name="text">
-               <string>Ngành</string>
-              </property>
-              <property name="icon">
-               <iconset>
-                <normaloff>../icons/constellation.png</normaloff>../icons/constellation.png</iconset>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QPushButton" name="pushButton_7">
-              <property name="font">
-               <font>
-                <pointsize>13</pointsize>
-               </font>
-              </property>
-              <property name="text">
-               <string>Học Phần </string>
-              </property>
-              <property name="icon">
-               <iconset>
-                <normaloff>../icons/book.png</normaloff>../icons/book.png</iconset>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QPushButton" name="pushButton_6">
-              <property name="font">
-               <font>
-                <pointsize>13</pointsize>
-               </font>
-              </property>
-              <property name="text">
-               <string>Giảng viên</string>
-              </property>
-              <property name="icon">
-               <iconset>
-                <normaloff>../icons/user-tie-solid.svg</normaloff>../icons/user-tie-solid.svg</iconset>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </widget>
-         </item>
-         <item row="1" column="0">
-          <spacer name="verticalSpacer_2">
-           <property name="orientation">
-            <enum>Qt::Vertical</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>20</width>
-             <height>40</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
-         <item row="2" column="0">
-          <spacer name="verticalSpacer">
-           <property name="orientation">
-            <enum>Qt::Vertical</enum>
-           </property>
-           <property name="sizeType">
-            <enum>QSizePolicy::Maximum</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>0</width>
-             <height>0</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
-         <item row="3" column="0">
-          <widget class="QPushButton" name="btnLogout">
-           <property name="styleSheet">
-            <string notr="true">background-color: rgb(255, 197, 242)</string>
-           </property>
-           <property name="text">
-            <string>LOG OUT</string>
-           </property>
-           <property name="icon">
-            <iconset>
-             <normaloff>../icons/logout.png</normaloff>../icons/logout.png</iconset>
-           </property>
-          </widget>
+                </property>
+                <property name="text">
+                 <string>Trang chủ</string>
+                </property>
+                <property name="icon">
+                 <iconset>
+                  <normaloff>../icons/house-solid.svg</normaloff>../icons/house-solid.svg</iconset>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="0">
+               <widget class="QPushButton" name="btnSinhVien">
+                <property name="font">
+                 <font>
+                  <pointsize>13</pointsize>
+                 </font>
+                </property>
+                <property name="text">
+                 <string>Sinh viên</string>
+                </property>
+                <property name="icon">
+                 <iconset>
+                  <normaloff>../icons/graduated.png</normaloff>../icons/graduated.png</iconset>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="0">
+               <widget class="QPushButton" name="btnLop">
+                <property name="font">
+                 <font>
+                  <pointsize>13</pointsize>
+                 </font>
+                </property>
+                <property name="text">
+                 <string>Lớp</string>
+                </property>
+                <property name="icon">
+                 <iconset>
+                  <normaloff>../icons/majority.png</normaloff>../icons/majority.png</iconset>
+                </property>
+               </widget>
+              </item>
+              <item row="3" column="0">
+               <widget class="QPushButton" name="btnNganh">
+                <property name="font">
+                 <font>
+                  <pointsize>13</pointsize>
+                 </font>
+                </property>
+                <property name="text">
+                 <string>Ngành</string>
+                </property>
+                <property name="icon">
+                 <iconset>
+                  <normaloff>../icons/constellation.png</normaloff>../icons/constellation.png</iconset>
+                </property>
+               </widget>
+              </item>
+              <item row="4" column="0">
+               <widget class="QPushButton" name="btnHocPhan">
+                <property name="font">
+                 <font>
+                  <pointsize>13</pointsize>
+                 </font>
+                </property>
+                <property name="text">
+                 <string>Học Phần </string>
+                </property>
+                <property name="icon">
+                 <iconset>
+                  <normaloff>../icons/book.png</normaloff>../icons/book.png</iconset>
+                </property>
+               </widget>
+              </item>
+              <item row="5" column="0">
+               <widget class="QPushButton" name="btnGiangVien">
+                <property name="font">
+                 <font>
+                  <pointsize>13</pointsize>
+                 </font>
+                </property>
+                <property name="text">
+                 <string>Giảng viên</string>
+                </property>
+                <property name="icon">
+                 <iconset>
+                  <normaloff>../icons/user-tie-solid.svg</normaloff>../icons/user-tie-solid.svg</iconset>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <spacer name="verticalSpacer">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>78</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item>
+            <widget class="QPushButton" name="btnLogout">
+             <property name="styleSheet">
+              <string notr="true">background-color: rgb(255, 197, 242)</string>
+             </property>
+             <property name="text">
+              <string>LOG OUT</string>
+             </property>
+             <property name="icon">
+              <iconset>
+               <normaloff>../icons/logout.png</normaloff>../icons/logout.png</iconset>
+             </property>
+            </widget>
+           </item>
+          </layout>
          </item>
         </layout>
        </widget>
@@ -255,7 +297,7 @@ align:left;</string>
       <item>
        <widget class="QStackedWidget" name="stackedWidget">
         <property name="currentIndex">
-         <number>1</number>
+         <number>5</number>
         </property>
         <widget class="QWidget" name="trangchu">
          <layout class="QGridLayout" name="gridLayout_2">
@@ -280,7 +322,7 @@ align:left;</string>
          </layout>
         </widget>
         <widget class="QWidget" name="sinhvien">
-         <layout class="QGridLayout" name="gridLayout_3">
+         <layout class="QGridLayout" name="gridLayout_5">
           <item row="0" column="0">
            <widget class="QLabel" name="label_3">
             <property name="font">
@@ -292,6 +334,138 @@ align:left;</string>
              <string>Sinh viên</string>
             </property>
            </widget>
+          </item>
+         </layout>
+        </widget>
+        <widget class="QWidget" name="lop">
+         <widget class="QLabel" name="label_4">
+          <property name="geometry">
+           <rect>
+            <x>190</x>
+            <y>150</y>
+            <width>47</width>
+            <height>13</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>lop</string>
+          </property>
+         </widget>
+        </widget>
+        <widget class="QWidget" name="nganh">
+         <widget class="QLabel" name="label_5">
+          <property name="geometry">
+           <rect>
+            <x>170</x>
+            <y>170</y>
+            <width>47</width>
+            <height>13</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>nganh</string>
+          </property>
+         </widget>
+        </widget>
+        <widget class="QWidget" name="hocphan">
+         <widget class="QLabel" name="label_6">
+          <property name="geometry">
+           <rect>
+            <x>160</x>
+            <y>170</y>
+            <width>47</width>
+            <height>13</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>hoc phan</string>
+          </property>
+         </widget>
+        </widget>
+        <widget class="QWidget" name="giangvien">
+         <layout class="QGridLayout" name="gridLayout_6">
+          <item row="0" column="0">
+           <layout class="QVBoxLayout" name="verticalLayout_3">
+            <item>
+             <widget class="QPushButton" name="pushButton">
+              <property name="maximumSize">
+               <size>
+                <width>200</width>
+                <height>16777215</height>
+               </size>
+              </property>
+              <property name="text">
+               <string>Thêm</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QTableWidget" name="tbGiangVien">
+              <property name="horizontalScrollBarPolicy">
+               <enum>Qt::ScrollBarAsNeeded</enum>
+              </property>
+              <property name="sizeAdjustPolicy">
+               <enum>QAbstractScrollArea::AdjustToContents</enum>
+              </property>
+              <property name="showGrid">
+               <bool>true</bool>
+              </property>
+              <attribute name="horizontalHeaderCascadingSectionResizes">
+               <bool>true</bool>
+              </attribute>
+              <attribute name="horizontalHeaderDefaultSectionSize">
+               <number>83</number>
+              </attribute>
+              <attribute name="horizontalHeaderStretchLastSection">
+               <bool>false</bool>
+              </attribute>
+              <attribute name="verticalHeaderCascadingSectionResizes">
+               <bool>false</bool>
+              </attribute>
+              <attribute name="verticalHeaderDefaultSectionSize">
+               <number>30</number>
+              </attribute>
+              <attribute name="verticalHeaderStretchLastSection">
+               <bool>false</bool>
+              </attribute>
+              <column>
+               <property name="text">
+                <string>Mã cán bộ</string>
+               </property>
+              </column>
+              <column>
+               <property name="text">
+                <string>Tên</string>
+               </property>
+              </column>
+              <column>
+               <property name="text">
+                <string>Điện thoại</string>
+               </property>
+              </column>
+              <column>
+               <property name="text">
+                <string>Email</string>
+               </property>
+              </column>
+              <column>
+               <property name="text">
+                <string>Địa chỉ</string>
+               </property>
+              </column>
+              <column>
+               <property name="text">
+                <string>Trình độ</string>
+               </property>
+              </column>
+              <column>
+               <property name="text">
+                <string>Trạng thái</string>
+               </property>
+              </column>
+             </widget>
+            </item>
+           </layout>
           </item>
          </layout>
         </widget>
