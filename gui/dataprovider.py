@@ -20,20 +20,21 @@ def insertOrUpdateSinhVien(sv_mssv, sv_ten, lop_id, sv_dienthoai, sv_diachi, sv_
     conn.commit()
     conn.close()
 
-def insertOrUpdateCanBo(cb_maso, cb_ten, cb_dienthoai, cb_email):
+def insertOrUpdateCanBo(cb_maso, cb_ten, cb_dienthoai, cb_email, cb_diachi, cb_trinhdo, cb_trangthai):
     conn = sql.connect(database="database/DatabaseStudentCheckedFace.db")  
-    query = "SELECT * FROM canbo where cb_maso = ?"
+    query = "SELECT cb_id FROM canbo where cb_maso = ?"
     cursor = conn.execute(query, cb_maso)
     isRecordExist = 0
     for row in cursor:
         isRecordExist = 1
     print(isRecordExist)
     if(isRecordExist == 0):
-        query = "INSERT INTO canbo (cb_ten, cb_dienthoai, cb_email, cb_password) VALUES (?, ?, ?, ?)"
-        conn.execute(query, (cb_ten, cb_dienthoai, cb_email, pw_default.hexdigest))
+        query = "INSERT INTO canbo (cb_ten, cb_dienthoai, cb_email, cb_password, cb_diachi, cb_trinhdo, cb_trangthai) " 
+        + "VALUES (?, ?, ?, ?, ?, ?, ?)"
+        conn.execute(query, (cb_ten, cb_dienthoai, cb_email, pw_default.hexdigest, cb_diachi, cb_trinhdo, cb_trangthai))
     else:
-        query = "UPDATE canbo set cb_ten=?, cb_dienthoai=?, cb_email=? where cb_maso=?"
-        conn.execute(query, (cb_ten, cb_dienthoai, cb_email, cb_maso))
+        query = "UPDATE canbo set cb_ten=?, cb_dienthoai=?, cb_email=?, cb_diachi=?, cb_trinhdo=?, cb_trangthai=? where cb_maso=?"
+        conn.execute(query, (cb_ten, cb_dienthoai, cb_email, cb_diachi, cb_trinhdo, cb_trangthai, cb_maso))
     conn.commit()
     conn.close() 
 
@@ -65,6 +66,16 @@ def login(cb_maso, password):
         return -1
     else:
         return loaitaikhoan
-        
+    
+def getListCanBo(iTrangThai, iLoaiTK, tukhoa):
+    conn = sql.connect(database="database/DatabaseStudentCheckedFace.db")
+    statement = "SELECT * from tb_canbo where cb_trangthai=? and loaitaikhoan=?"
+    if(str(tukhoa) != ""):
+        statement += " and (cb_ten ilike ? || cb_dienthoai like ? || cb_email ilike ? || cb_diachi ilike ?)"
+        cur = conn.execute(statement, (str(iTrangThai), str(iLoaiTK), str(tukhoa), str(tukhoa), str(tukhoa), str(tukhoa)))
+    else:
+        cur = conn.execute(statement, (str(iTrangThai), iLoaiTK))
+    result_set = cur.fetchall()
+    return result_set
         
 # insertSinhVien("2", "2", 3, "4", "5", "6", "7")
