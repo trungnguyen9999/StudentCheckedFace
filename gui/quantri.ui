@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>804</width>
-    <height>534</height>
+    <width>693</width>
+    <height>518</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -15,7 +15,82 @@
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout_3">
-    <item row="3" column="0">
+    <item row="0" column="0">
+     <layout class="QHBoxLayout" name="horizontalLayout">
+      <item>
+       <widget class="QLabel" name="label">
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>50</height>
+         </size>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>17</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">margin-left:20px;</string>
+        </property>
+        <property name="text">
+         <string>Bảng điều khiển</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+        <property name="margin">
+         <number>10</number>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <spacer name="horizontalSpacer">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item>
+       <widget class="QLabel" name="lblTenQuanTri">
+        <property name="text">
+         <string>Admin</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="imgQuanTri">
+        <property name="maximumSize">
+         <size>
+          <width>40</width>
+          <height>40</height>
+         </size>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="pixmap">
+         <pixmap>../images/user.png</pixmap>
+        </property>
+        <property name="scaledContents">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item row="1" column="0">
      <layout class="QHBoxLayout" name="horizontalLayout_3">
       <property name="spacing">
        <number>0</number>
@@ -172,7 +247,7 @@ align:left;</string>
                  </font>
                 </property>
                 <property name="text">
-                 <string>Giảng viên</string>
+                 <string>Cán bộ</string>
                 </property>
                 <property name="icon">
                  <iconset>
@@ -548,6 +623,8 @@ align:left;</string>
               <property name="font">
                <font>
                 <pointsize>10</pointsize>
+                <weight>50</weight>
+                <bold>false</bold>
                </font>
               </property>
               <property name="styleSheet">
@@ -560,6 +637,9 @@ align:left;</string>
                <enum>QAbstractScrollArea::AdjustToContents</enum>
               </property>
               <property name="showGrid">
+               <bool>true</bool>
+              </property>
+              <property name="sortingEnabled">
                <bool>true</bool>
               </property>
               <attribute name="horizontalHeaderCascadingSectionResizes">
@@ -576,6 +656,9 @@ align:left;</string>
               </attribute>
               <attribute name="verticalHeaderDefaultSectionSize">
                <number>30</number>
+              </attribute>
+              <attribute name="verticalHeaderHighlightSections">
+               <bool>true</bool>
               </attribute>
               <attribute name="verticalHeaderStretchLastSection">
                <bool>false</bool>
@@ -646,90 +729,12 @@ align:left;</string>
       </item>
      </layout>
     </item>
-    <item row="4" column="0" alignment="Qt::AlignHCenter">
+    <item row="2" column="0">
      <widget class="QLabel" name="lblTime">
       <property name="text">
        <string>TextLabel</string>
       </property>
      </widget>
-    </item>
-    <item row="2" column="0">
-     <layout class="QHBoxLayout" name="horizontalLayout">
-      <item>
-       <widget class="QLabel" name="label">
-        <property name="maximumSize">
-         <size>
-          <width>16777215</width>
-          <height>50</height>
-         </size>
-        </property>
-        <property name="font">
-         <font>
-          <pointsize>17</pointsize>
-          <weight>75</weight>
-          <bold>true</bold>
-         </font>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">margin-left:20px;</string>
-        </property>
-        <property name="text">
-         <string>Bảng điều khiển</string>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignCenter</set>
-        </property>
-        <property name="margin">
-         <number>10</number>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <spacer name="horizontalSpacer">
-        <property name="orientation">
-         <enum>Qt::Horizontal</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>40</width>
-          <height>20</height>
-         </size>
-        </property>
-       </spacer>
-      </item>
-      <item>
-       <layout class="QVBoxLayout" name="verticalLayout_2"/>
-      </item>
-      <item>
-       <widget class="QLabel" name="lblTenQuanTri">
-        <property name="text">
-         <string>Admin</string>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QLabel" name="imgQuanTri">
-        <property name="maximumSize">
-         <size>
-          <width>40</width>
-          <height>40</height>
-         </size>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
-        <property name="pixmap">
-         <pixmap>C:/Users/DELL OS/.designer/images/user.png</pixmap>
-        </property>
-        <property name="scaledContents">
-         <bool>true</bool>
-        </property>
-       </widget>
-      </item>
-     </layout>
     </item>
    </layout>
   </widget>
