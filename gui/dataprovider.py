@@ -77,5 +77,20 @@ def getListCanBo(iTrangThai, iLoaiTK, tukhoa):
         cur = conn.execute(statement, (str(iTrangThai), iLoaiTK))
     result_set = cur.fetchall()
     return result_set
+
+
+def getListLop():
+    conn = sql.connect(database="database/DatabaseStudentCheckedFace.db")  
+    query = "SELECT * FROM lop"
+    result = conn.execute(query)
+    for row in result.fetchall():
+        print(row)
+
+def getListNganh():
+    conn = sql.connect(database="database/DatabaseStudentCheckedFace.db")  
+    query = "SELECT * FROM nganh"
+    result = conn.execute(query)
+    for row in result.fetchall():
+        print(row)
         
 # insertSinhVien("2", "2", 3, "4", "5", "6", "7")
