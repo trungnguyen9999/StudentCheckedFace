@@ -324,7 +324,7 @@ class QuanTriScreen(QtWidgets.QMainWindow):
         self.btnCapNhatCB.clicked.connect(lambda: capNhatCB())
         self.btnCapNhatTTCB.clicked.connect(lambda: capNhatTrangThaiTKCB())
         self.tbGiangVien.itemSelectionChanged.connect(lambda: getRowSelected())
-        
+        self.tWNganh.itemSelectionChanged.connect(lambda: getRowSelectedNganh())
         self.btnLogout.clicked.connect(lambda: logout())
 
         def capNhatCB():
@@ -369,6 +369,25 @@ class QuanTriScreen(QtWidgets.QMainWindow):
                         setTrangThaiTK("1")
             except:
                 print("")
+        def getRowSelectedNganh():
+            items = self.tWNganh.selectedItems()
+            try:
+                nghanh = dp.getNganhByMaNganh(str(items[0].text()))
+                if(nghanh is None):
+                    print("CHua tim thay")
+                else:
+                    print(nghanh)
+                    setId(nghanh[0])
+                    self.lEMaNganh.setText(nghanh[1])
+                    self.lETenNganh.setText(nghanh[2])
+                    # if(cb[7] == '1'):
+                    #     self.btnCapNhatTTCB.setText("Khóa")
+                    #     setTrangThaiTK("0")
+                    # else: 
+                    #     self.btnCapNhatTTCB.setText("Mở")
+                    #     setTrangThaiTK("1")
+            except:
+                print("")
                 
         def showQTTrangChu():
             print("Trangchu")   
@@ -385,7 +404,10 @@ class QuanTriScreen(QtWidgets.QMainWindow):
             
         def showQTNganh():
             print("Nganh") 
-            self.stackedWidget.setCurrentWidget(self.nganh)  
+            self.stackedWidget.setCurrentWidget(self.nganh)
+            tuKhoa = self.lETimKiemNgah.text()
+            loadDataNganh(tuKhoa)
+            self.pBTimNganh.clicked.connect(lambda: loadDataNganh(tuKhoa)) 
             
         def showQTHocPhan():
             print("Hocphan")  
@@ -393,7 +415,7 @@ class QuanTriScreen(QtWidgets.QMainWindow):
             
         def showQTGiangVien():
             print("Giangvien")      
-            self.stackedWidget.setCurrentWidget(self.giangvien) 
+            self.stackedWidget.setCurrentWidget(self.giangvien)
             cbbTrangThai = self.cbbTrangThai
             cbbTrangThai.clear()
             cbbTrangThai.addItem("Hoạt động") 
@@ -447,6 +469,33 @@ class QuanTriScreen(QtWidgets.QMainWindow):
                 self.tbGiangVien.setItem(row, 4, QtWidgets.QTableWidgetItem(gv[5]))
                 self.tbGiangVien.setItem(row, 5, QtWidgets.QTableWidgetItem(gv[6]))
                 self.tbGiangVien.setCellWidget(row, 6, ImgWidget(self))
+                row += 1
+
+        def loadDataNganh(tukhoa):
+            print("Lấy dữ liệu nè:" + str(tukhoa))
+            #Lấy dữ liệu từ db
+            list_nghanh = dp.filterListNghanh(tukhoa)
+            row = 0
+            header = self.tWNganh.horizontalHeader()
+            header.setSectionResizeMode(QtWidgets.QHeaderView.Stretch)
+            self.tWNganh.horizontalHeader().setFont(QFont('Arial', weight = QFont.Bold))
+            self.tWNganh.setRowCount(len(list_nghanh))
+            for nganh in list_nghanh:
+                # if(str(nganh[1]) == ""): continue
+                # labelImg = QtWidgets.QLabel(self)
+                # if(list_nghanh==1):
+                #     strTrangThai = "Đang hoạt động"
+                #     setImagePath("../StudetnCheckedFace/icons/check.png")
+                # else:
+                #     strTrangThai = "Không hoạt động"
+                #     setImagePath("../StudetnCheckedFace/icons/cross.png")
+                # print(imagePath)
+                header = self.tWNganh.horizontalHeader()       
+                header.setSectionResizeMode(0, QHeaderView.ResizeToContents)
+                header.setSectionResizeMode(1, QHeaderView.Stretch)
+                
+                self.tWNganh.setItem(row, 0, QtWidgets.QTableWidgetItem(nganh[1]))
+                self.tWNganh.setItem(row, 1, QtWidgets.QTableWidgetItem(nganh[2]))
                 row += 1
                 
      def changeTrangThai(self, i):

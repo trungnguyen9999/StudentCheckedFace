@@ -73,6 +73,22 @@ def filterListCanBo(iTrangThai, iLoaiTK, tukhoa):
     result_set = cur.fetchall()
     return result_set
 
+def filterListNghanh(tukhoa):
+    conn = sql.connect(database="database/DatabaseStudentCheckedFace.db")
+    statement = "SELECT * from tb_nganh "
+    if(str(tukhoa) != ""):
+        statement += " where (nganh_ma ilike ? || nganh_ten like ? )"
+        cur = conn.execute(statement, (str(tukhoa), str(tukhoa)))
+    else:
+        cur = conn.execute(statement)
+    result_set = cur.fetchall()
+    return result_set
+def getNganhByMaNganh(nganh_ma):
+    conn = sql.connect(database="database/DatabaseStudentCheckedFace.db")
+    statement = "SELECT * from tb_nganh where nganh_ma = ?"
+    cur = conn.execute(statement, [nganh_ma])
+    return cur.fetchall()[0]
+
 def getCanBoByTenDN(cb_maso):
     conn = sql.connect(database="database/DatabaseStudentCheckedFace.db")
     statement = "SELECT * from tb_canbo where cb_ma = ?"
