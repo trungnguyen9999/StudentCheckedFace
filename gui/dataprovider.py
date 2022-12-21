@@ -28,7 +28,7 @@ def insertOrUpdateCanBo(cb_id, cb_ma, cb_ten, cb_dienthoai, cb_email, cb_diachi,
     if(isRecordExist == 0):
         query = "INSERT INTO tb_canbo (cb_ma, cb_ten, cb_dienthoai, cb_email, cb_diachi, cb_trinhdo, cb_trangthai) " 
         + "VALUES (?, ?, ?, ?, ?, ?, ?)"
-        conn.execute(query, (str(cb_ma), str(cb_ten), str(cb_dienthoai), str(cb_email), str(cb_diachi), str(cb_trinhdo), str(cb_trangthai)))
+        conn.execute(query, [str(cb_ma), str(cb_ten), str(cb_dienthoai), str(cb_email), str(cb_diachi), str(cb_trinhdo), str(cb_trangthai)])
     else:
         query = "UPDATE tb_canbo set cb_ma=?, cb_ten=?, cb_dienthoai=?, cb_email=?, cb_diachi=?, cb_trinhdo=?, cb_trangthai=? where cb_id=?"
         conn.execute(query, (cb_ma, cb_ten, cb_dienthoai, cb_email, cb_diachi, cb_trinhdo, cb_trangthai, cb_id))
@@ -67,12 +67,29 @@ def filterListCanBo(iTrangThai, iLoaiTK, tukhoa):
     conn = sql.connect(database="database/DatabaseStudentCheckedFace.db")
     statement = "SELECT * from tb_canbo where cb_trangthai=? and loaitaikhoan=?"
     if(str(tukhoa) != ""):
-        statement += " and (cb_ten like ? || cb_dienthoai like ? || cb_email like ? || cb_diachi like ?)"
-        cur = conn.execute(statement, [str(iTrangThai), str(iLoaiTK), str(tukhoa), str(tukhoa), str(tukhoa), str(tukhoa)])
+        statement += " and (cb_ten like ? OR cb_dienthoai like ? OR cb_email like ? OR cb_diachi like ?)"
+        cur = conn.execute(statement, (iTrangThai, iLoaiTK, '%'+str(tukhoa)+'%', '%'+str(tukhoa)+'%', '%'+str(tukhoa)+'%', '%'+str(tukhoa)+'%'))
     else:
         cur = conn.execute(statement, (str(iTrangThai), iLoaiTK))
+        print(statement)
     result_set = cur.fetchall()
     return result_set
+
+def filterListNghanh(tukhoa):
+    conn = sql.connect(database="database/DatabaseStudentCheckedFace.db")
+    statement = "SELECT * from tb_nganh "
+    if(str(tukhoa) != ""):
+        statement += " where (nganh_ma ilike ? OR nganh_ten like ? )"
+        cur = conn.execute(statement, (str(tukhoa), str(tukhoa)))
+    else:
+        cur = conn.execute(statement)
+    result_set = cur.fetchall()
+    return result_set
+def getNganhByMaNganh(nganh_ma):
+    conn = sql.connect(database="database/DatabaseStudentCheckedFace.db")
+    statement = "SELECT * from tb_nganh where nganh_ma = ?"
+    cur = conn.execute(statement, [nganh_ma])
+    return cur.fetchall()[0]
 
 def getCanBoByTenDN(cb_maso):
     conn = sql.connect(database="database/DatabaseStudentCheckedFace.db")
@@ -100,7 +117,7 @@ def getLopIdByLopMa(lop_ma):
     
 def getListSvOfLop(lop_id):
     conn = sql.connect(database="database/DatabaseStudentCheckedFace.db")
-    statement = "select sv_maso || ' - ' || sv_hoten from tb_sinhvien where lop_id = ?;"
+    statement = "select sv_maso OR ' - ' OR sv_hoten from tb_sinhvien where lop_id = ?;"
     cur = conn.execute(statement, [lop_id])
     return cur.fetchall()
 
