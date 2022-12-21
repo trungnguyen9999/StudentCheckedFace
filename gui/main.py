@@ -324,7 +324,8 @@ class QuanTriScreen(QtWidgets.QMainWindow):
         self.btnCapNhatCB.clicked.connect(lambda: capNhatCB())
         self.btnCapNhatTTCB.clicked.connect(lambda: capNhatTrangThaiTKCB())
         self.tbGiangVien.itemSelectionChanged.connect(lambda: getRowSelected())
-        
+        self.tbHocPhan.itemSelectionChanged.connect(lambda: getRowSelectedHocPhan())
+        self.btnTimKiemHocPhan.clicked.connect(lambda: showQTHocPhanTimKiem())
         self.btnLogout.clicked.connect(lambda: logout())
 
         def capNhatCB():
@@ -336,6 +337,22 @@ class QuanTriScreen(QtWidgets.QMainWindow):
             _dccb = self.edtDiaChiCB.text()
             _tdcb = self.edtTrinhDoCB.text()
             dp.insertOrUpdateCanBo(id, _mscb, _htcb, _dtcb, _emcb, _dccb, _tdcb , 1)
+        def capNhatHocPhan():
+            print("cap nhat HP")
+            
+        def getRowSelectedHocPhan():
+            items = self.tbHocPhan.selectedItems()
+            try:
+                hp = dp.getHocPhanByMaHocPhan(str(items[0].text()))
+                if(hp is None):
+                    print("Chua tim thay")
+                else:
+                    print(hp)
+                    setId(hp[0])
+                    self.edtMaHocPhan.setText(hp[1])
+                    self.edtTenHocPhan.setText(hp[2])
+            except:
+                print("")
 
         def capNhatTrangThaiTKCB():
             # qm = QMessageBox()
@@ -390,6 +407,7 @@ class QuanTriScreen(QtWidgets.QMainWindow):
         def showQTHocPhan():
             print("Hocphan")  
             self.stackedWidget.setCurrentWidget(self.hocphan)  
+            loadDataHocPhan("")
             
         def showQTGiangVien():
             print("Giangvien")      
@@ -448,7 +466,27 @@ class QuanTriScreen(QtWidgets.QMainWindow):
                 self.tbGiangVien.setItem(row, 5, QtWidgets.QTableWidgetItem(gv[6]))
                 self.tbGiangVien.setCellWidget(row, 6, ImgWidget(self))
                 row += 1
-                
+        def loadDataHocPhan(tuKhoa):
+            print("Lay data Hoc Phan")
+            #Lấy dữ liệu từ db
+            list_hp = dp.getListHocPhan(tuKhoa)
+            self.tbHocPhan.setRowCount(len(list_hp))
+            row = 0
+            header = self.tbHocPhan.horizontalHeader()
+            header.setSectionResizeMode(QtWidgets.QHeaderView.Stretch)
+            self.tbHocPhan.horizontalHeader().setFont(QFont('Arial', weight = QFont.Bold))
+            for hp in list_hp:    
+                header.setSectionResizeMode(0, QHeaderView.ResizeToContents)
+                header.setSectionResizeMode(1, QHeaderView.Stretch)
+                self.tbHocPhan.setItem(row, 0, QtWidgets.QTableWidgetItem(hp[1]))
+                self.tbHocPhan.setItem(row, 1, QtWidgets.QTableWidgetItem(hp[2]))
+                row+=1
+
+        def showQTHocPhanTimKiem():
+            tuKhoa = self.edtTimKiemHocPhan.text()
+            print(tuKhoa)
+            loadDataHocPhan(tuKhoa)
+
      def changeTrangThai(self, i):
             if(i == 0):
                 self.iTrangThai = 1

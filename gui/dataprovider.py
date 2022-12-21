@@ -34,7 +34,10 @@ def insertOrUpdateCanBo(cb_id, cb_ma, cb_ten, cb_dienthoai, cb_email, cb_diachi,
         conn.execute(query, (cb_ma, cb_ten, cb_dienthoai, cb_email, cb_diachi, cb_trinhdo, cb_trangthai, cb_id))
     conn.commit()
     conn.close()
-    
+
+def insertOrUpdateHocPhan(hp_ma,hp_ten):
+    conn = sql.connect(database="database/DatabaseStudentCheckedFace.db") 
+
 def updatePassword(cb_maso, cb_password, cb_newpassword):
     print("Update password")
     conn = sql.connect(database="database/DatabaseStudentCheckedFace.db")  
@@ -73,17 +76,35 @@ def filterListCanBo(iTrangThai, iLoaiTK, tukhoa):
     result_set = cur.fetchall()
     return result_set
 
+def getHocPhanByMaHocPhan(hp_ma):
+    conn = sql.connect(database="database/DatabaseStudentCheckedFace.db")
+    statement = "SELECT * from tb_hocphan where hp_ma = ?"
+    cur = conn.execute(statement, [hp_ma])
+    return cur.fetchall()[0]
+
 def getCanBoByTenDN(cb_maso):
     conn = sql.connect(database="database/DatabaseStudentCheckedFace.db")
     statement = "SELECT * from tb_canbo where cb_ma = ?"
     cur = conn.execute(statement, [cb_maso])
     return cur.fetchall()[0]
 
+
 def getCanBoById(cb_id):
     conn = sql.connect(database="database/DatabaseStudentCheckedFace.db")
     statement = "SELECT * from tb_canbo where cb_id = ?"
     cur = conn.execute(statement, [cb_id])
     return cur.fetchall()[0]
+
+def getListHocPhan(tukhoa):
+    conn = sql.connect(database="database/DatabaseStudentCheckedFace.db")
+    statement = "SELECT * from tb_hocphan"
+    if(str(tukhoa) != ""):
+        statement += " where hp_ten like ?"
+        cur = conn.execute(statement, [str(tukhoa)])
+    else:
+        cur = conn.execute(statement)
+    return cur.fetchall()
+
 
 def getLopOfCanbo(cb_maso):
     conn = sql.connect(database="database/DatabaseStudentCheckedFace.db")
@@ -147,3 +168,4 @@ def capNhatTrangThaiTKCanBo(id, tt):
     conn.execute(query, [str(tt), id])
     conn.commit()
     conn.close()
+
