@@ -35,8 +35,21 @@ def insertOrUpdateCanBo(cb_id, cb_ma, cb_ten, cb_dienthoai, cb_email, cb_diachi,
     conn.commit()
     conn.close()
 
-def insertOrUpdateHocPhan(hp_ma,hp_ten):
+def insertOrUpdateHocPhan(hp_id,hp_ma,hp_ten):
     conn = sql.connect(database="database/DatabaseStudentCheckedFace.db") 
+    query = "SELECT hp_id FROM tb_hocphan where hp_id = ?"
+    cursor = conn.execute(query, [hp_id])
+    isRecordExist = 0
+    for row in cursor:
+        isRecordExist = 1
+    if(isRecordExist == 0):
+        query = "INSERT INTO tb_hocphan (hp_ma, hp_ten) VALUES (?, ?)"
+        conn.execute(query, [str(hp_ma), str(hp_ten)])
+    else:
+        query = "UPDATE tb_hocphan set hp_ma=?, hp_ten=? where hp_id=?"
+        conn.execute(query, (hp_ma, hp_ten, hp_id))
+    conn.commit()
+    conn.close()
 
 def updatePassword(cb_maso, cb_password, cb_newpassword):
     print("Update password")
@@ -82,12 +95,30 @@ def getHocPhanByMaHocPhan(hp_ma):
     cur = conn.execute(statement, [hp_ma])
     return cur.fetchall()[0]
 
+
+def filterListNghanh(tukhoa):
+    conn = sql.connect(database="database/DatabaseStudentCheckedFace.db")
+    statement = "SELECT * from tb_nganh "
+    if(str(tukhoa) != ""):
+        statement += " where (nganh_ma ilike ? || nganh_ten like ? )"
+        cur = conn.execute(statement, (str(tukhoa), str(tukhoa)))
+    else:
+        cur = conn.execute(statement)
+    result_set = cur.fetchall()
+    return result_set
+
+def getNganhByMaNganh(nganh_ma):
+    conn = sql.connect(database="database/DatabaseStudentCheckedFace.db")
+    statement = "SELECT * from tb_nganh where nganh_ma = ?"
+    cur = conn.execute(statement, [nganh_ma])
+    return cur.fetchall()[0]
+
+
 def getCanBoByTenDN(cb_maso):
     conn = sql.connect(database="database/DatabaseStudentCheckedFace.db")
     statement = "SELECT * from tb_canbo where cb_ma = ?"
     cur = conn.execute(statement, [cb_maso])
     return cur.fetchall()[0]
-
 
 def getCanBoById(cb_id):
     conn = sql.connect(database="database/DatabaseStudentCheckedFace.db")
@@ -96,11 +127,12 @@ def getCanBoById(cb_id):
     return cur.fetchall()[0]
 
 def getListHocPhan(tukhoa):
+    print(tukhoa)
     conn = sql.connect(database="database/DatabaseStudentCheckedFace.db")
     statement = "SELECT * from tb_hocphan"
     if(str(tukhoa) != ""):
-        statement += " where hp_ten like ?"
-        cur = conn.execute(statement, [str(tukhoa)])
+        statement += " where hp_ten like ? OR hp_ma like ?"
+        cur = conn.execute(statement, ['%'+str(tukhoa)+'%', '%'+str(tukhoa)+'%'])
     else:
         cur = conn.execute(statement)
     return cur.fetchall()
