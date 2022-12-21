@@ -319,13 +319,18 @@ class QuanTriScreen(QtWidgets.QMainWindow):
         self.btnTrangChu.clicked.connect(lambda: showQTTrangChu())
         self.btnSinhVien.clicked.connect(lambda: showQTSinhVien())
         self.btnLop.clicked.connect(lambda: showQTLop())
-        self.btnNganh.clicked.connect(lambda: showQTNganh())
+        #self.btnNganh.clicked.connect(lambda: showQTNganh())
         self.btnHocPhan.clicked.connect(lambda: showQTHocPhan())
         self.btnGiangVien.clicked.connect(lambda: showQTGiangVien())
         self.btnCapNhatCB.clicked.connect(lambda: capNhatCB())
         self.btnCapNhatTTCB.clicked.connect(lambda: capNhatTrangThaiTKCB())
+
         self.tbGiangVien.itemSelectionChanged.connect(lambda: getRowSelected())
-        self.tWNganh.itemSelectionChanged.connect(lambda: getRowSelectedNganh())
+
+
+        self.tbHocPhan.itemSelectionChanged.connect(lambda: getRowSelectedHocPhan())
+        self.btnCapNhatHocPhan.clicked.connect(lambda: capNhatHocPhan())
+        self.btnTimKiemHocPhan.clicked.connect(lambda: showQTHocPhanTimKiem())
         self.btnLogout.clicked.connect(lambda: logout())
 
         def capNhatCB():
@@ -338,6 +343,28 @@ class QuanTriScreen(QtWidgets.QMainWindow):
             _tdcb = self.edtTrinhDoCB.text()
             dp.insertOrUpdateCanBo(id, _mscb, _htcb, _dtcb, _emcb, _dccb, _tdcb , 1)
             setId(0)
+        
+        def capNhatHocPhan():
+            print("cap nhat hoc phan",id)
+            maHocPhan = self.edtMaHocPhan.text()
+            tenHocPhan = self.edtTenHocPhan.text()
+            dp.insertOrUpdateHocPhan(id, maHocPhan, tenHocPhan)
+            
+            
+        def getRowSelectedHocPhan():
+            items = self.tbHocPhan.selectedItems()
+            try:
+                hp = dp.getHocPhanByMaHocPhan(str(items[0].text()))
+                setId(hp[0])
+                if(hp is None):
+                    print("Chua tim thay")
+                else:
+                    print(hp)
+                    setId(hp[0])
+                    self.edtMaHocPhan.setText(hp[1])
+                    self.edtTenHocPhan.setText(hp[2])
+            except:
+                print("")
 
         def capNhatTrangThaiTKCB():
             # qm = QMessageBox()
@@ -409,11 +436,12 @@ class QuanTriScreen(QtWidgets.QMainWindow):
             self.stackedWidget.setCurrentWidget(self.nganh)
             tuKhoa = self.lETimKiemNgah.text()
             loadDataNganh(tuKhoa)
-            self.pBTimNganh.clicked.connect(lambda: loadDataNganh(tuKhoa)) 
+            #self.pBTimNganh.clicked.connect(lambda: loadDataNganh(tuKhoa)) 
             
         def showQTHocPhan():
             print("Hocphan")  
             self.stackedWidget.setCurrentWidget(self.hocphan)  
+            loadDataHocPhan("")
             
         def showQTGiangVien():
             print("Giangvien")      
@@ -473,6 +501,28 @@ class QuanTriScreen(QtWidgets.QMainWindow):
                 self.tbGiangVien.setItem(row, 5, QtWidgets.QTableWidgetItem(gv[6]))
                 self.tbGiangVien.setCellWidget(row, 6, ImgWidget(self))
                 row += 1
+
+        def loadDataHocPhan(tuKhoa):
+            print("Lay data Hoc Phan")
+            #Lấy dữ liệu từ db
+            list_hp = dp.getListHocPhan(tuKhoa)
+            self.tbHocPhan.setRowCount(len(list_hp))
+            row = 0
+            header = self.tbHocPhan.horizontalHeader()
+            header.setSectionResizeMode(QtWidgets.QHeaderView.Stretch)
+            self.tbHocPhan.horizontalHeader().setFont(QFont('Arial', weight = QFont.Bold))
+            for hp in list_hp:    
+                header.setSectionResizeMode(0, QHeaderView.ResizeToContents)
+                header.setSectionResizeMode(1, QHeaderView.Stretch)
+                self.tbHocPhan.setItem(row, 0, QtWidgets.QTableWidgetItem(hp[1]))
+                self.tbHocPhan.setItem(row, 1, QtWidgets.QTableWidgetItem(hp[2]))
+                row+=1
+
+        def showQTHocPhanTimKiem():
+            tuKhoa = self.edtTimKiemHocPhan.text()
+            print(tuKhoa)
+            loadDataHocPhan(tuKhoa)
+
 
         def loadDataNganh(tukhoa):
             print("Lấy dữ liệu nè:" + str(tukhoa))
