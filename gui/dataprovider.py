@@ -7,7 +7,7 @@ def insertOrUpdateSinhVien(sv_mssv, sv_ten, lop_id, sv_dienthoai, sv_diachi, sv_
     conn = sql.connect("database/DatabaseStudentCheckedFace.db")
     query = "SELECT * FROM sinhvien where sv_mssv = ?"
     cursor = conn.execute(query, sv_mssv)
-    isRecordExist = 0
+    isRecordExist = 0 
     for row in cursor:
         isRecordExist = 1
     print(isRecordExist)

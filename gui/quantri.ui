@@ -175,35 +175,19 @@ align:left;</string>
                 </property>
                </widget>
               </item>
-              <item row="1" column="0">
-               <widget class="QPushButton" name="btnSinhVien">
+              <item row="5" column="0">
+               <widget class="QPushButton" name="btnGiangVien">
                 <property name="font">
                  <font>
                   <pointsize>13</pointsize>
                  </font>
                 </property>
                 <property name="text">
-                 <string>Sinh viên</string>
+                 <string>Cán bộ</string>
                 </property>
                 <property name="icon">
                  <iconset>
-                  <normaloff>../icons/graduated.png</normaloff>../icons/graduated.png</iconset>
-                </property>
-               </widget>
-              </item>
-              <item row="2" column="0">
-               <widget class="QPushButton" name="btnLop">
-                <property name="font">
-                 <font>
-                  <pointsize>13</pointsize>
-                 </font>
-                </property>
-                <property name="text">
-                 <string>Lớp</string>
-                </property>
-                <property name="icon">
-                 <iconset>
-                  <normaloff>../icons/majority.png</normaloff>../icons/majority.png</iconset>
+                  <normaloff>../icons/user-tie-solid.svg</normaloff>../icons/user-tie-solid.svg</iconset>
                 </property>
                </widget>
               </item>
@@ -239,19 +223,35 @@ align:left;</string>
                 </property>
                </widget>
               </item>
-              <item row="5" column="0">
-               <widget class="QPushButton" name="btnGiangVien">
+              <item row="2" column="0">
+               <widget class="QPushButton" name="btnLop">
                 <property name="font">
                  <font>
                   <pointsize>13</pointsize>
                  </font>
                 </property>
                 <property name="text">
-                 <string>Cán bộ</string>
+                 <string>Lớp</string>
                 </property>
                 <property name="icon">
                  <iconset>
-                  <normaloff>../icons/user-tie-solid.svg</normaloff>../icons/user-tie-solid.svg</iconset>
+                  <normaloff>../icons/majority.png</normaloff>../icons/majority.png</iconset>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="0">
+               <widget class="QPushButton" name="btnSinhVien">
+                <property name="font">
+                 <font>
+                  <pointsize>13</pointsize>
+                 </font>
+                </property>
+                <property name="text">
+                 <string>Sinh viên</string>
+                </property>
+                <property name="icon">
+                 <iconset>
+                  <normaloff>../icons/graduated.png</normaloff>../icons/graduated.png</iconset>
                 </property>
                </widget>
               </item>
@@ -304,7 +304,7 @@ align:left;</string>
 background-color:rgb(13, 28, 79);</string>
         </property>
         <property name="currentIndex">
-         <number>5</number>
+         <number>4</number>
         </property>
         <widget class="QWidget" name="trangchu">
          <layout class="QGridLayout" name="gridLayout_2">
@@ -375,18 +375,73 @@ background-color:rgb(13, 28, 79);</string>
          </widget>
         </widget>
         <widget class="QWidget" name="hocphan">
-         <widget class="QLabel" name="label_6">
+         <widget class="QTableView" name="tableView">
           <property name="geometry">
            <rect>
-            <x>160</x>
-            <y>170</y>
-            <width>47</width>
-            <height>13</height>
+            <x>10</x>
+            <y>10</y>
+            <width>331</width>
+            <height>192</height>
            </rect>
           </property>
-          <property name="text">
-           <string>hoc phan</string>
+         </widget>
+         <widget class="QWidget" name="">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>208</y>
+            <width>361</width>
+            <height>56</height>
+           </rect>
           </property>
+          <layout class="QHBoxLayout" name="horizontalLayout_7">
+           <item>
+            <layout class="QVBoxLayout" name="verticalLayout_16">
+             <item>
+              <widget class="QLabel" name="label_6">
+               <property name="text">
+                <string>TextLabel</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLineEdit" name="lineEdit"/>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <layout class="QVBoxLayout" name="verticalLayout_17">
+             <item>
+              <widget class="QLabel" name="label_17">
+               <property name="text">
+                <string>TextLabel</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLineEdit" name="lineEdit_2"/>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <layout class="QVBoxLayout" name="verticalLayout_18">
+             <item>
+              <widget class="QPushButton" name="pushButton">
+               <property name="text">
+                <string>PushButton</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="pushButton_2">
+               <property name="text">
+                <string>PushButton</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+          </layout>
          </widget>
         </widget>
         <widget class="QWidget" name="giangvien">
@@ -877,8 +932,7 @@ background-color:rgb(13, 28, 79);</string>
                           </font>
                          </property>
                          <property name="styleSheet">
-                          <string notr="true">
-</string>
+                          <string notr="true"/>
                          </property>
                         </widget>
                        </item>

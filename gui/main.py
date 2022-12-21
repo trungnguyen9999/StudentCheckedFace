@@ -267,7 +267,7 @@ class GiangVienScreen(QtWidgets.QMainWindow):
         print(lop_ma)
         lop_id = dp.getLopIdByLopMa(lop_ma)
         print("ntn: " + str(lop_id))
-        listSv = dp.getListSvOfLop(lop_id)
+        listSv = dp.getListSvOfLop(lop_id) 
         for sv in listSv:
             self.listSinhVien.addItem(sv[0])
             
