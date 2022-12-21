@@ -27,8 +27,8 @@ def insertOrUpdateCanBo(cb_id, cb_ma, cb_ten, cb_dienthoai, cb_email, cb_diachi,
         isRecordExist = 1
     if(isRecordExist == 0):
         query = "INSERT INTO tb_canbo (cb_ma, cb_ten, cb_dienthoai, cb_email, cb_diachi, cb_trinhdo, cb_trangthai) " 
-        + "VALUES (?, ?, ?, ?, ?, ?, ?, ?)"
-        conn.execute(query, (cb_ma, cb_ten, cb_dienthoai, cb_email, cb_diachi, cb_trinhdo, cb_trangthai))
+        + "VALUES (?, ?, ?, ?, ?, ?, ?)"
+        conn.execute(query, (str(cb_ma), str(cb_ten), str(cb_dienthoai), str(cb_email), str(cb_diachi), str(cb_trinhdo), str(cb_trangthai)))
     else:
         query = "UPDATE tb_canbo set cb_ma=?, cb_ten=?, cb_dienthoai=?, cb_email=?, cb_diachi=?, cb_trinhdo=?, cb_trangthai=? where cb_id=?"
         conn.execute(query, (cb_ma, cb_ten, cb_dienthoai, cb_email, cb_diachi, cb_trinhdo, cb_trangthai, cb_id))
@@ -63,11 +63,12 @@ def login(cb_maso, password):
         return loaitaikhoan
     
 def filterListCanBo(iTrangThai, iLoaiTK, tukhoa):
+    print(tukhoa)
     conn = sql.connect(database="database/DatabaseStudentCheckedFace.db")
     statement = "SELECT * from tb_canbo where cb_trangthai=? and loaitaikhoan=?"
     if(str(tukhoa) != ""):
-        statement += " and (cb_ten ilike ? || cb_dienthoai like ? || cb_email ilike ? || cb_diachi ilike ?)"
-        cur = conn.execute(statement, (str(iTrangThai), str(iLoaiTK), str(tukhoa), str(tukhoa), str(tukhoa), str(tukhoa)))
+        statement += " and (cb_ten like ? || cb_dienthoai like ? || cb_email like ? || cb_diachi like ?)"
+        cur = conn.execute(statement, [str(iTrangThai), str(iLoaiTK), str(tukhoa), str(tukhoa), str(tukhoa), str(tukhoa)])
     else:
         cur = conn.execute(statement, (str(iTrangThai), iLoaiTK))
     result_set = cur.fetchall()
