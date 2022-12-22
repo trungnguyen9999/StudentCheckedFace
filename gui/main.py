@@ -401,20 +401,28 @@ class QuanTriScreen(QtWidgets.QMainWindow):
                         self.btnCapNhatTTCB.setText("Mở")
                         setTrangThaiTK("1")
             except:
-                print("")
+                print()
 
         def capNhatNganh():
             print("cap nhat nganh",id)
             nganhMa = self.lEMaNganh.text()
             nganhTen = self.lETenNganh.text()
-            dp.insertOrUpdateNganh(id, nganhMa, nganhTen)
-            loadDataNganh("")
-            clearNganh()
+            if(len(nganhMa) != 0 and len(nganhTen) != 0):             
+                dp.insertOrUpdateNganh(id, nganhMa, nganhTen)
+                loadDataNganh("")
+                clearNganh()
+            else:
+                msg = QMessageBox()
+                msg.setWindowTitle("Error")
+                msg.setText("Vui lòng nhập đầy đủ thông tin !")
+                msg.exec_()
+
         def clearNganh():
             setId(0)
             print("clear nganh !",id)
             self.lEMaNganh.setText("")
             self.lETenNganh.setText("")
+
 
         def getRowSelectedNganh():
             items = self.tWNganh.selectedItems()

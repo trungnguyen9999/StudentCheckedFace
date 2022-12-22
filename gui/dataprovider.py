@@ -122,7 +122,7 @@ def getHocPhanByMaHocPhan(hp_ma):
 
 def filterListNghanh(tukhoa):
     conn = sql.connect(database="database/DatabaseStudentCheckedFace.db")
-    statement = "SELECT * from tb_nganh"
+    statement = "SELECT * from tb_nganh order by nganh_id desc"
     if(str(tukhoa) != ""):
         statement += " where (nganh_ma like ? or nganh_ten like ? )"
         cur = conn.execute(statement, [str("%"+ tukhoa + "%"), str("%"+tukhoa+"%")])
