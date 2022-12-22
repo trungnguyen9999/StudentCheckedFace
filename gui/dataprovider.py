@@ -51,6 +51,28 @@ def insertOrUpdateHocPhan(hp_id,hp_ma,hp_ten):
     conn.commit()
     conn.close()
 
+def insertOrUpdateNganh(nganh_id,nganh_ma,nganh_ten):
+    conn = sql.connect(database="database/DatabaseStudentCheckedFace.db") 
+    query = "SELECT nganh_id FROM tb_nganh where nganh_id = ?"
+    queryCheckMa = "SELECT nganh_id FROM tb_nganh where nganh_ma = ?"
+    cursor = conn.execute(query, [nganh_id])
+    cursorCheckMa = conn.execute(query, [nganh_ma])
+    isRecordExist = 0
+    isRecordCheckExist = 0
+    for row in cursor:
+        isRecordExist = 1
+    for row in cursorCheckMa:
+        isRecordCheckExist = 1
+
+    if(isRecordExist == 0 and isRecordCheckExist == 0):
+        query = "INSERT INTO tb_nganh (nganh_ma, nganh_ten) VALUES (?, ?)"
+        conn.execute(query, [str(nganh_ma), str(nganh_ten)])
+    else:
+        query = "UPDATE tb_nganh set nganh_ma=?, nganh_ten=? where nganh_id=?"
+        conn.execute(query, (nganh_ma, nganh_ten, nganh_id))
+    conn.commit()
+    conn.close()
+
 def updatePassword(cb_maso, cb_password, cb_newpassword):
     print("Update password")
     conn = sql.connect(database="database/DatabaseStudentCheckedFace.db")  
@@ -100,14 +122,15 @@ def getHocPhanByMaHocPhan(hp_ma):
 
 def filterListNghanh(tukhoa):
     conn = sql.connect(database="database/DatabaseStudentCheckedFace.db")
-    statement = "SELECT * from tb_nganh "
+    statement = "SELECT * from tb_nganh"
     if(str(tukhoa) != ""):
-        statement += " where (nganh_ma ilike ? OR nganh_ten like ? )"
-        cur = conn.execute(statement, (str(tukhoa), str(tukhoa)))
+        statement += " where (nganh_ma like ? or nganh_ten like ? )"
+        cur = conn.execute(statement, [str("%"+ tukhoa + "%"), str("%"+tukhoa+"%")])
     else:
         cur = conn.execute(statement)
     result_set = cur.fetchall()
     return result_set
+
 
 def getNganhByMaNganh(nganh_ma):
     conn = sql.connect(database="database/DatabaseStudentCheckedFace.db")

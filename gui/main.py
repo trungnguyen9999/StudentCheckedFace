@@ -319,18 +319,22 @@ class QuanTriScreen(QtWidgets.QMainWindow):
         self.btnTrangChu.clicked.connect(lambda: showQTTrangChu())
         self.btnSinhVien.clicked.connect(lambda: showQTSinhVien())
         self.btnLop.clicked.connect(lambda: showQTLop())
-        #self.btnNganh.clicked.connect(lambda: showQTNganh())
+        self.btnNganh.clicked.connect(lambda: showQTNganh())
         self.btnHocPhan.clicked.connect(lambda: showQTHocPhan())
         self.btnGiangVien.clicked.connect(lambda: showQTGiangVien())
         self.btnCapNhatCB.clicked.connect(lambda: capNhatCB())
+        self.btnClearNganh.clicked.connect(lambda: clearNganh())
         self.btnCapNhatTTCB.clicked.connect(lambda: capNhatTrangThaiTKCB())
 
         self.tbGiangVien.itemSelectionChanged.connect(lambda: getRowSelected())
 
 
         self.tbHocPhan.itemSelectionChanged.connect(lambda: getRowSelectedHocPhan())
+        self.tWNganh.itemSelectionChanged.connect(lambda:getRowSelectedNganh())
         self.btnCapNhatHocPhan.clicked.connect(lambda: capNhatHocPhan())
         self.btnTimKiemHocPhan.clicked.connect(lambda: showQTHocPhanTimKiem())
+        self.pBTimNganh.clicked.connect(lambda: showQTNganh())
+        self.pBCapNhatNganh.clicked.connect(lambda: capNhatNganh())
         self.btnLogout.clicked.connect(lambda: logout())
 
         def capNhatCB():
@@ -398,23 +402,32 @@ class QuanTriScreen(QtWidgets.QMainWindow):
                         setTrangThaiTK("1")
             except:
                 print("")
+
+        def capNhatNganh():
+            print("cap nhat nganh",id)
+            nganhMa = self.lEMaNganh.text()
+            nganhTen = self.lETenNganh.text()
+            dp.insertOrUpdateNganh(id, nganhMa, nganhTen)
+            loadDataNganh("")
+            clearNganh()
+        def clearNganh():
+            setId(0)
+            print("clear nganh !",id)
+            self.lEMaNganh.setText("")
+            self.lETenNganh.setText("")
+
         def getRowSelectedNganh():
             items = self.tWNganh.selectedItems()
             try:
                 nghanh = dp.getNganhByMaNganh(str(items[0].text()))
+                setId(nghanh[0])
                 if(nghanh is None):
                     print("CHua tim thay")
                 else:
                     print(nghanh)
                     setId(nghanh[0])
                     self.lEMaNganh.setText(nghanh[1])
-                    self.lETenNganh.setText(nghanh[2])
-                    # if(cb[7] == '1'):
-                    #     self.btnCapNhatTTCB.setText("Khóa")
-                    #     setTrangThaiTK("0")
-                    # else: 
-                    #     self.btnCapNhatTTCB.setText("Mở")
-                    #     setTrangThaiTK("1")
+                    self.lETenNganh.setText(nghanh[2])                 
             except:
                 print("")
                 
@@ -432,11 +445,10 @@ class QuanTriScreen(QtWidgets.QMainWindow):
             self.stackedWidget.setCurrentWidget(self.lop)  
             
         def showQTNganh():
-            print("Nganh") 
+            print("Nganh")
             self.stackedWidget.setCurrentWidget(self.nganh)
             tuKhoa = self.lETimKiemNgah.text()
             loadDataNganh(tuKhoa)
-            #self.pBTimNganh.clicked.connect(lambda: loadDataNganh(tuKhoa)) 
             
         def showQTHocPhan():
             print("Hocphan")  
@@ -534,19 +546,9 @@ class QuanTriScreen(QtWidgets.QMainWindow):
             self.tWNganh.horizontalHeader().setFont(QFont('Arial', weight = QFont.Bold))
             self.tWNganh.setRowCount(len(list_nghanh))
             for nganh in list_nghanh:
-                # if(str(nganh[1]) == ""): continue
-                # labelImg = QtWidgets.QLabel(self)
-                # if(list_nghanh==1):
-                #     strTrangThai = "Đang hoạt động"
-                #     setImagePath("../StudetnCheckedFace/icons/check.png")
-                # else:
-                #     strTrangThai = "Không hoạt động"
-                #     setImagePath("../StudetnCheckedFace/icons/cross.png")
-                # print(imagePath)
                 header = self.tWNganh.horizontalHeader()       
                 header.setSectionResizeMode(0, QHeaderView.ResizeToContents)
-                header.setSectionResizeMode(1, QHeaderView.Stretch)
-                
+                header.setSectionResizeMode(1, QHeaderView.Stretch)                
                 self.tWNganh.setItem(row, 0, QtWidgets.QTableWidgetItem(nganh[1]))
                 self.tWNganh.setItem(row, 1, QtWidgets.QTableWidgetItem(nganh[2]))
                 row += 1
